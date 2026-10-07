@@ -1,0 +1,8 @@
+/* congrats.css — мобильная версия */
+*{margin:0;padding:0;box-sizing:border-box}
+body{min-height:100dvh;display:grid;align-items:start;background:linear-gradient(180deg,#141433,#a13d63,#ff7e5f);color:#fff;font-family:system-ui,sans-serif;text-align:left;padding:18px 16px 30px}
+.wrap{position:relative;z-index:2;max-width:860px;margin:0 auto;width:100%}
+h1{font-size:clamp(14px,3.2vw,18px);min-height:1.2em;white-space:pre-wrap;line-height:1.7;word-break:break-word}
+.back{display:inline-flex;align-items:center;gap:8px;color:#ffd66e;font-weight:700;position:static;margin-top:24px;text-decoration:none;padding:12px 16px;border-radius:999px;background:rgba(255,255,255,.08)}
+.back:active{transform:scale(.98)}
+#fireworks{position:fixed;inset:0;pointer-events:none}
