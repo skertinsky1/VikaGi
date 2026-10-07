@@ -294,8 +294,7 @@
     var forced = /[?&]party=1/.test(location.search);
     var saved = getLS(LS.unlocked, "0") === "1";
     var bday = new Date(now.getFullYear(), BDAY_MONTH - 1, BDAY_DAY, 0, 0, 0);
-    var debug = new Date(2026, 9, 7); // DEBUG: показать сразу для просмотра
-    var isOpen = forced || saved || now >= debug || now >= bday;
+    var isOpen = forced || saved || now >= bday;
     if (isOpen && !saved) setLS(LS.unlocked, "1");
     var sec = $("congratsSection"), hint = $("congratsHint");
     if (!sec) return;
