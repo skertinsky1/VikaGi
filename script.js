@@ -170,7 +170,7 @@
   }
 
   /* ---------- 2. ПОГОДА ДНЯ ---------- */
-  // Приоритет: overrides → личные даты → серия/пропуск → время суток → пн/сб → визиты → остальные дни недели → дефолт
+  // Приоритет (TEST): overrides → личные даты → время суток → надпись дня недели (главная) → визиты → дефолт
   function getWeather(now, visit) {
     var W = hasData ? DATA.weather : null;
     if (!W) return { emoji: "🌤️", text: "Обычный день", src: "авто-прогноз" };
@@ -185,22 +185,18 @@
     if (mo === 1 && dy === 14) return ext(W.feb14, "14 февраля");
     if (mo === 0 && dy === 1) return ext(W.jan1, "1 января");
 
-    if (visit.streak >= 5) return ext(W.streak, visit.streak + " дней подряд");
-    if (visit.type === "missed") return ext(W.missed, "пауза " + visit.gap + " дн.");
-
     var h = now.getHours();
     if (h < 7) return ext(W.earlyMorning, "раннее утро");
     if (h >= 23) return ext(W.lateNight, "глубокая ночь");
 
+    // главная — надпись каждый день (день недели)
     var dow = now.getDay();
-    if (dow === 1 || dow === 6) return ext(W.weekday[dow], WEEKDAYS[dow]);
-
-    if (visit.type === "returned") return ext(W.returned, "повторный визит");
-    if (visit.type === "first" && dayKey(now) !== dayKey(START)) {
-      // первый заход за день показываем только если сегодня уже виделись? нет — показываем как тёплую встречу,
-      // но только когда нет яркого weekday-повода (чтобы пн/сб не терялись)
-    }
     if (W.weekday && W.weekday[dow]) return ext(W.weekday[dow], WEEKDAYS[dow]);
+
+    // серия/визиты — пониже, запасной вариант
+    if (visit.streak >= 5) return ext(W.streak, visit.streak + " дней подряд");
+    if (visit.type === "missed") return ext(W.missed, "пауза " + visit.gap + " дн.");
+    if (visit.type === "returned") return ext(W.returned, "повторный визит");
     if (visit.type === "first") return ext(W.firstVisit, "первый визит за день");
     return ext(W.def, "авто-прогноз");
   }
@@ -288,13 +284,13 @@
     requestAnimationFrame(frame);
   }
 
-  /* ---------- 8. СЕКРЕТНАЯ КНОПКА ---------- */
+  /* ---------- 8. СЕКРЕТНАЯ КНОПКА (строго с 10 октября; ?party=1 — предпросмотр) ---------- */
   function checkUnlock(now) {
     now = now || new Date();
     var forced = /[?&]party=1/.test(location.search);
     var saved = getLS(LS.unlocked, "0") === "1";
     var bday = new Date(now.getFullYear(), BDAY_MONTH - 1, BDAY_DAY, 0, 0, 0);
-    var isOpen = forced || saved || now >= bday;
+    var isOpen = forced || saved || now >= bday; // 10 октября 00:00 по местному времени
     if (isOpen && !saved) setLS(LS.unlocked, "1");
     var sec = $("congratsSection"), hint = $("congratsHint");
     if (!sec) return;

@@ -2,14 +2,14 @@
 <html lang="ru">
 <head>
 <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
 <title>Для Вики 💛 — маленький мир</title>
 <meta name="description" content="Сайт-подарок для Вики: таймер, погода дня, фразы и комплименты." />
 <link rel="preconnect" href="https://fonts.googleapis.com" />
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
 <link href="https://fonts.googleapis.com/css2?family=Caveat:wght@500;600;700&family=Manrope:wght@400;500;600;700;800&family=Unbounded:wght@500;700&display=swap" rel="stylesheet" />
-<link rel="preload" as="style" href="style.css" />
-<link rel="stylesheet" href="style.css" />
+<link rel="preload" as="style" href="style.css?v=2" />
+<link rel="stylesheet" href="style.css?v=2" />
 </head>
 <body data-period="night">
 <canvas id="particles"></canvas>
@@ -17,26 +17,36 @@
   <div class="orb orb-1"></div>
   <div class="orb orb-2"></div>
   <div class="orb orb-3"></div>
+  <div class="orb orb-4"></div>
+  <div class="aurora"></div>
   <div class="grain"></div>
+  <div class="vignette"></div>
 </div>
 
 <header class="hero">
-  <div class="hero-badge" id="topBadge">
+  <div class="hero-badge reveal" id="topBadge">
     <span class="dot"></span>
     <span id="topBadgeText">мы знакомы 18 дней • до дня рождения 3 дня</span>
   </div>
-  <h1 class="title">Вика <span class="title-heart">✦</span></h1>
-  <p class="subtitle">этот маленький сайт живёт только для тебя.<br />он считает дни, ловит погоду и собирает тёплые слова</p>
-  <div class="hero-meta">
+  <h1 class="title reveal">Вика <span class="title-heart">✦</span></h1>
+  <p class="subtitle reveal">этот маленький сайт живёт только для тебя.<br />он считает дни, ловит погоду и собирает тёплые слова</p>
+  <div class="hero-meta reveal">
     <div class="meta-pill">с 19.09.2026</div>
     <div class="meta-pill accent">🎂 10 октября</div>
   </div>
 </header>
 
+<div class="ticker reveal" aria-hidden="true">
+  <div class="ticker-track">
+    <span>викчк ✦ лапчк ✦ пятчк ✦ ты лучшая ✦ викчк ✦ лапчк ✦ пятчк ✦ ты лучшая ✦&nbsp;</span>
+    <span>викчк ✦ лапчк ✦ пятчк ✦ ты лучшая ✦ викчк ✦ лапчк ✦ пятчк ✦ ты лучшая ✦&nbsp;</span>
+  </div>
+</div>
+
 <main class="container">
 
   <!-- ТАЙМЕР -->
-  <section class="card timer-card">
+  <section class="card timer-card reveal">
     <div class="card-top">
       <div class="pill" id="timerMode">⏳ до дня рождения</div>
       <div class="toggle">
@@ -80,7 +90,7 @@
 
   <!-- ПОГОДА + ФРАЗА -->
   <section class="grid-2">
-    <article class="card">
+    <article class="card reveal">
       <div class="card-icon">🌤️</div>
       <h3>Погода дня</h3>
       <div class="weather-emoji" id="weatherEmoji">☀️</div>
@@ -88,7 +98,7 @@
       <p class="hint" id="weatherHint">суббота • авто-прогноз</p>
     </article>
 
-    <article class="card">
+    <article class="card reveal">
       <div class="card-icon">💌</div>
       <h3>Фраза дня</h3>
       <p class="phrase" id="dailyPhrase">«Обычный день становится особенным, если рядом ты»</p>
@@ -97,7 +107,7 @@
   </section>
 
   <!-- КОМПЛИМЕНТЫ -->
-  <section class="card compliment-card">
+  <section class="card compliment-card reveal">
     <div class="compliment-left">
       <div class="card-icon">💛</div>
       <h3>Генератор тепла</h3>
@@ -114,14 +124,14 @@
   </section>
 
   <!-- СЕКРЕТНАЯ КНОПКА -->
-  <section class="card locked" id="congratsSection" hidden>
+  <section class="card locked reveal" id="congratsSection" hidden>
     <div class="locked-glow"></div>
     <h3>🎉 Время пришло!</h3>
     <p>Таймер дошёл до нуля. Тебя ждёт кое-что особенное…</p>
     <a class="btn big" href="congrats.html">Открыть поздравление →</a>
   </section>
 
-  <section class="card ghost" id="congratsHint">
+  <section class="card ghost reveal" id="congratsHint">
     <span class="lock">🔒</span>
     <p>Здесь появится секретная кнопка, когда наступит 10 октября</p>
   </section>
@@ -133,8 +143,9 @@
   <p class="footer-small">19.09.2026 — дата, с которой всё началось ✦</p>
 </footer>
 
-<script src="data.js"></script>
-<script src="overrides.js"></script>
-<script src="script.js"></script>
+<script src="data.js?v=2"></script>
+<script src="overrides.js?v=2"></script>
+<script src="script.js?v=2"></script>
+<script src="fx.js?v=2"></script>
 </body>
 </html>

@@ -4,14 +4,21 @@
 <meta charset="UTF-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1.0" />
 <title>С днём рождения, Вика! 🎉</title>
-<link rel="stylesheet" href="congrats.css" />
+<link rel="stylesheet" href="congrats.css?v=2" />
 </head>
 <body>
-<main class="wrap">
+<div class="intro" id="intro" aria-hidden="true">
+  <div class="intro-inner">
+    <p class="intro-line l1">С днём рождения,</p>
+    <p class="intro-line l2">Вика.</p>
+    <p class="intro-line l3">Сегодня твой день. Официально.</p>
+  </div>
+</div>
+<main class="wrap pre" id="mainWrap">
   <h1 id="typed"></h1>
   <a href="index.html" class="back">← вернуться на главную</a>
 </main>
 <canvas id="fireworks"></canvas>
-<script src="congrats.js"></script>
+<script src="congrats.js?v=2"></script>
 </body>
 </html>
