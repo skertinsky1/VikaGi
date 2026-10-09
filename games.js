@@ -12,6 +12,7 @@
     coin: "Ещё разок ↻"
   };
   var REDUCED = window.matchMedia && window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+  var MOBILE = window.innerWidth < 640 || (window.matchMedia && window.matchMedia("(pointer: coarse)").matches);
 
   function lsGet(k, fb) { try { var v = localStorage.getItem(k); return v === null ? fb : v; } catch (e) { return fb; } }
   function lsSet(k, v) { try { localStorage.setItem(k, v); } catch (e) {} }
@@ -68,7 +69,7 @@
   window.addEventListener("resize", sResize); sResize();
 
   function salute(n) {
-    if (REDUCED) return;
+    if (REDUCED || MOBILE) return; // на телефоне салютов нет — только победа и счётчик
     n = n || 5;
     var i = 0;
     var timer = setInterval(function () {

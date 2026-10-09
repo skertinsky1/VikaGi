@@ -345,6 +345,14 @@ canvas.scratch{
   .float-candy{display:none}
   .reel{font-size:46px}
 }
+/* --- телефон: убираем фоновый мусор ради скорости --- */
+@media (max-width:640px),(pointer:coarse){
+  .candy-rain,.float-candy,.glow,#salute{display:none}
+  .g-title,.btn-gold,.sign,.wheel-wrap::before,.pointer,
+  .path span:first-child,.panel.active::after,.coin-stage::before,
+  .slot-lights span{animation:none}
+  .tab,.g-back{backdrop-filter:none;-webkit-backdrop-filter:none}
+}
 @media (prefers-reduced-motion:reduce){
   *{animation:none!important;transition:none!important}
 }
