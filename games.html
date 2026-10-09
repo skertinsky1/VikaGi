@@ -1,0 +1,131 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
+<title>Шоколадный джекпот 🍫</title>
+<link rel="preconnect" href="https://fonts.googleapis.com" />
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+<link href="https://fonts.googleapis.com/css2?family=Caveat:wght@500;600;700&family=Manrope:wght@400;500;600;700;800&family=Unbounded:wght@500;700&display=swap" rel="stylesheet" />
+<link rel="stylesheet" href="games.css" />
+</head>
+<body>
+<canvas id="salute"></canvas>
+<div class="awning" aria-hidden="true"></div>
+<div class="candy-rain" aria-hidden="true">
+  <span>🍬</span><span>🍫</span><span>🍭</span><span>⭐</span><span>🧁</span><span>✨</span><span>🍬</span><span>🍩</span><span>🍫</span><span>⭐</span><span>🍭</span><span>✨</span>
+</div>
+<div class="glow g1" aria-hidden="true"></div>
+<div class="glow g2" aria-hidden="true"></div>
+<div class="float-candy left" aria-hidden="true">🍭<br />🍬</div>
+<div class="float-candy right" aria-hidden="true">🧁<br />🍩</div>
+
+<header class="shop">
+  <a class="g-back" href="index.html">← на главную</a>
+  <div class="sign">
+    <p class="sign-over">сладкое казино • выигрыш всегда</p>
+    <h1 class="g-title">Шоколадный джекпот</h1>
+    <p class="g-sub">Самое честное казино, почти... 😏</p>
+  </div>
+  <div class="choco-ticket">
+    <span class="ticket-stub">🍫</span>
+    <span class="ticket-num" id="chocoCount">0</span>
+    <span class="ticket-words">шоколадок уже твои</span>
+  </div>
+  <div class="path" aria-hidden="true">
+    <span>🎡</span><i></i><span>🎰</span><i></i><span>🎫</span><i></i><span>🪙</span>
+  </div>
+</header>
+
+<nav class="tabs">
+  <button class="tab active" data-game="roulette" type="button">🎡 Рулетка</button>
+  <button class="tab" data-game="slots" type="button">🎰 Слоты</button>
+  <button class="tab" data-game="scratch" type="button">🎫 Скретч</button>
+  <button class="tab" data-game="coin" type="button">🪙 Монетка</button>
+</nav>
+
+<main class="g-main">
+
+  <!-- 1. РУЛЕТКА -->
+  <section class="panel active" id="game-roulette">
+    <div class="game-badge">🎡</div>
+    <h2>Рулетка</h2>
+    <p class="game-hint">крути — удача уже ждёт</p>
+    <div class="wheel-wrap">
+      <div class="pointer">▼</div>
+      <canvas id="wheel" width="640" height="640"></canvas>
+    </div>
+    <button class="btn-gold" id="spinRoulette" type="button">Крутить</button>
+    <p class="result" id="rouletteResult"></p>
+    <button class="btn-gold ghost-btn" id="rouletteNext" type="button" hidden>Дальше: слоты →</button>
+  </section>
+
+  <!-- 2. СЛОТ-МАШИНА -->
+  <section class="panel" id="game-slots">
+    <div class="game-badge">🎰</div>
+    <h2>Слоты</h2>
+    <p class="game-hint">три шоколадки — и ты королева</p>
+    <div class="slot-machine" id="slotMachine">
+      <div class="slot-lights" aria-hidden="true">
+        <span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span>
+      </div>
+      <div class="reels">
+        <div class="reel"><span id="reel0">🍫</span></div>
+        <div class="reel"><span id="reel1">🍫</span></div>
+        <div class="reel"><span id="reel2">🍫</span></div>
+      </div>
+      <div class="slot-label">ДЖЕКПОТ • 3 × 🍫</div>
+    </div>
+    <button class="btn-gold" id="spinSlots" type="button">Крутить</button>
+    <p class="result" id="slotsResult"></p>
+    <button class="btn-gold ghost-btn" id="slotsNext" type="button" hidden>Дальше: скретч →</button>
+  </section>
+
+  <!-- 3. СКРЕТЧ-КАРТА -->
+  <section class="panel" id="game-scratch">
+    <div class="game-badge">🎫</div>
+    <h2>Скретч-билеты</h2>
+    <p class="game-hint">сотри монеткой или пальцем 👆</p>
+    <div class="ticket" data-ticket="0">
+      <div class="prize"><span class="prize-emoji">🍫</span><p>Шоколадка!</p><small>билет №1 • ты везучая</small></div>
+      <canvas class="scratch" width="600" height="300"></canvas>
+    </div>
+    <div class="ticket" data-ticket="1">
+      <div class="prize"><span class="prize-emoji">🍫</span><p>Шоколадка!</p><small>билет №2 • снова?!</small></div>
+      <canvas class="scratch" width="600" height="300"></canvas>
+    </div>
+    <div class="ticket" data-ticket="2">
+      <div class="prize"><span class="prize-emoji">🍫</span><p>Шоколадка!</p><small>билет №3 • бонусный</small></div>
+      <canvas class="scratch" width="600" height="300"></canvas>
+    </div>
+    <p class="result" id="scratchResult"></p>
+    <button class="btn-gold ghost-btn" id="scratchNext" type="button" hidden>Дальше: монетка →</button>
+  </section>
+
+  <!-- 4. МОНЕТКА -->
+  <section class="panel" id="game-coin">
+    <div class="game-badge">🪙</div>
+    <h2>Монетка</h2>
+    <p class="game-hint">выбирай сторону — выигрывают обе</p>
+    <div class="coin-stage" id="coinStage">
+      <div class="coin" id="coin">
+        <div class="face front"><span>🍫</span><p>Орёл!<br />Шоколадка</p></div>
+        <div class="face back"><span>💨</span><p>Решка!<br />Ничего</p></div>
+      </div>
+      <div class="coin-shadow" id="coinShadow"></div>
+    </div>
+    <div class="coin-choices">
+      <button class="btn-gold small" id="tossHeads" type="button">Орёл 🦅</button>
+      <button class="btn-gold small" id="tossTails" type="button">Решка ✨</button>
+    </div>
+    <p class="result" id="coinResult"></p>
+    <button class="btn-gold ghost-btn" id="coinNext" type="button" hidden>Дальше →</button>
+  </section>
+
+  <p class="final-line" id="finalLine">Ты выиграла <b><span id="chocoTotal">0</span> шоколадок</b>! Скажи мне, какие хочешь 🍫</p>
+
+</main>
+
+<script src="games.js"></script>
+</body>
+</html>

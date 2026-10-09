@@ -1,0 +1,350 @@
+/* games.css — ТЕСТ: «Шоколадная лавка» максимум (все хуки games.js сохранены) */
+*{margin:0;padding:0;box-sizing:border-box}
+:root{
+  --gold:#ffd66e;
+  --caramel:#ff9d6e;
+  --choc:#4a2e3d;
+  --choc-soft:#6d3b47;
+  --berry:#ff5c8a;
+  --cream:#fff8ea;
+  --cream-2:#ffe9c8;
+  --night-0:#120826;
+  --night-1:#241040;
+}
+html{-webkit-tap-highlight-color:transparent}
+body{
+  min-height:100dvh;color:var(--cream);
+  font-family:'Manrope',system-ui,sans-serif;
+  background:
+    radial-gradient(90% 42% at 50% -6%,#3d1658 0%,transparent 70%),
+    linear-gradient(180deg,var(--night-1) 0%,var(--night-0) 60%,#1a0b30 100%);
+  overflow-x:hidden;padding-bottom:48px;
+}
+#salute{position:fixed;inset:0;pointer-events:none;z-index:0}
+
+/* --- тент кондитерской --- */
+.awning{height:44px;position:relative;z-index:2;
+  background:repeating-linear-gradient(90deg,#ff6b8b 0 36px,#fff3e0 36px 72px);
+  border-bottom:4px solid #7d1f3d;
+  box-shadow:0 10px 30px rgba(0,0,0,.45);
+}
+.awning::after{content:"";display:block;height:16px;
+  background:
+    radial-gradient(circle at 18px 0,#ff6b8b 13px,transparent 14px),
+    radial-gradient(circle at 54px 0,#fff3e0 13px,transparent 14px);
+  background-size:72px 16px;background-repeat:repeat-x;
+}
+/* конфетный дождь + свет */
+.candy-rain{position:fixed;inset:0;pointer-events:none;z-index:1;overflow:hidden}
+.candy-rain span{position:absolute;top:-46px;font-size:21px;opacity:.85;animation-name:confFall;animation-timing-function:linear;animation-iteration-count:infinite}
+.candy-rain span:nth-child(1){left:4%;animation-duration:7s;animation-delay:-2s}
+.candy-rain span:nth-child(2){left:12%;animation-duration:9s;animation-delay:-5s;font-size:17px}
+.candy-rain span:nth-child(3){left:21%;animation-duration:8s;animation-delay:-1s;font-size:24px}
+.candy-rain span:nth-child(4){left:30%;animation-duration:10s;animation-delay:-7s}
+.candy-rain span:nth-child(5){left:39%;animation-duration:7.5s;animation-delay:-3.5s;font-size:18px}
+.candy-rain span:nth-child(6){left:48%;animation-duration:9.5s;animation-delay:-6s}
+.candy-rain span:nth-child(7){left:57%;animation-duration:8.5s;animation-delay:-2.5s;font-size:23px}
+.candy-rain span:nth-child(8){left:66%;animation-duration:7s;animation-delay:-4s}
+.candy-rain span:nth-child(9){left:74%;animation-duration:10.5s;animation-delay:-8s;font-size:18px}
+.candy-rain span:nth-child(10){left:82%;animation-duration:8s;animation-delay:-.5s}
+.candy-rain span:nth-child(11){left:90%;animation-duration:9s;animation-delay:-5.5s;font-size:22px}
+.candy-rain span:nth-child(12){left:96%;animation-duration:7.5s;animation-delay:-3s}
+@keyframes confFall{0%{transform:translateY(0) rotate(0)}100%{transform:translateY(114vh) rotate(340deg)}}
+.glow{position:fixed;border-radius:50%;filter:blur(100px);pointer-events:none;z-index:0}
+.glow.g1{width:420px;height:420px;left:-140px;top:22%;background:radial-gradient(circle,rgba(255,92,138,.35),transparent 70%);animation:glowDrift 12s ease-in-out infinite alternate}
+.glow.g2{width:460px;height:460px;right:-160px;top:58%;background:radial-gradient(circle,rgba(255,214,110,.28),transparent 70%);animation:glowDrift 15s ease-in-out -5s infinite alternate-reverse}
+@keyframes glowDrift{from{transform:translate(0,0) scale(1)}to{transform:translate(50px,40px) scale(1.15)}}
+.float-candy{position:fixed;top:150px;z-index:1;pointer-events:none;font-size:36px;line-height:1.5;opacity:.9;filter:drop-shadow(0 8px 14px rgba(0,0,0,.4));animation:candyFloat 5.5s ease-in-out infinite}
+.float-candy.left{left:10px}
+.float-candy.right{right:10px;animation-delay:1.6s}
+@keyframes candyFloat{0%,100%{transform:translateY(0) rotate(-4deg)}50%{transform:translateY(-18px) rotate(4deg)}}
+
+/* --- вывеска --- */
+.shop{position:relative;z-index:2;text-align:center;padding:18px 16px 6px;max-width:640px;margin:0 auto;display:flex;flex-direction:column}
+.g-back{
+  position:static;align-self:flex-start;margin-bottom:14px;
+  color:var(--gold);font-weight:700;font-size:14px;
+  text-decoration:none;padding:10px 14px;border-radius:999px;background:rgba(0,0,0,.4);
+  border:1px solid rgba(255,214,110,.4);backdrop-filter:blur(8px);
+}
+.g-back:active{transform:scale(.96)}
+.sign{
+  position:relative;margin-top:6px;padding:22px 18px 20px;border-radius:22px;
+  background:linear-gradient(180deg,#fffdf4,#ffe9c8);
+  border:3px solid var(--gold);
+  box-shadow:0 0 0 3px rgba(125,31,61,.9),0 0 50px rgba(255,180,80,.35),0 24px 60px rgba(0,0,0,.5);
+  transform-origin:top center;animation:signSwing 6s ease-in-out infinite;
+}
+@keyframes signSwing{0%,100%{transform:rotate(-.8deg)}50%{transform:rotate(.8deg)}}
+.sign::before,.sign::after{
+  content:"";position:absolute;top:-46px;width:3px;height:46px;
+  background:repeating-linear-gradient(180deg,var(--gold) 0 6px,transparent 6px 12px);
+}
+.sign::before{left:22%}.sign::after{right:22%}
+.sign-over{
+  font-size:11px;font-weight:800;letter-spacing:.24em;text-transform:uppercase;color:#b3541e;
+}
+.g-title{
+  font-family:'Unbounded',sans-serif;font-size:clamp(26px,7.4vw,42px);line-height:1.12;margin:8px 0 6px;
+  background:linear-gradient(92deg,#6d3b47 5%,#b3541e 35%,#c2255c 55%,#b3541e 75%,#6d3b47 95%);
+  background-size:220% auto;-webkit-background-clip:text;background-clip:text;color:transparent;
+  animation:sheen 7s linear infinite;
+}
+@keyframes sheen{to{background-position:220% center}}
+.g-sub{font-family:'Caveat',cursive;font-size:clamp(22px,5.4vw,28px);color:var(--choc-soft)}
+/* билет-счётчик */
+.choco-ticket{
+  display:inline-flex;align-items:center;gap:12px;margin-top:16px;position:relative;
+  background:linear-gradient(180deg,#fffdf4,#ffe3ba);color:var(--choc);
+  border-radius:18px;padding:12px 22px 12px 14px;
+  border:2px dashed rgba(179,84,30,.55);
+  box-shadow:0 14px 34px rgba(0,0,0,.45),0 0 30px rgba(255,214,110,.25);
+}
+.choco-ticket::before,.choco-ticket::after{
+  content:"";position:absolute;top:50%;width:22px;height:22px;border-radius:50%;
+  background:var(--night-1);transform:translateY(-50%);
+}
+.choco-ticket::before{left:-13px}
+.choco-ticket::after{right:-13px}
+.ticket-stub{font-size:34px;filter:drop-shadow(0 4px 8px rgba(0,0,0,.2))}
+.ticket-num{font-family:'Unbounded',sans-serif;font-size:38px;font-weight:700;color:#b3541e;min-width:64px}
+.ticket-words{font-size:12px;font-weight:800;letter-spacing:.08em;text-transform:uppercase;opacity:.65;text-align:left;line-height:1.5}
+/* путь из 4 игр */
+.path{display:flex;align-items:center;justify-content:center;gap:8px;margin-top:16px}
+.path span{
+  width:46px;height:46px;border-radius:50%;display:grid;place-items:center;font-size:22px;
+  background:rgba(255,255,255,.08);border:2px solid rgba(255,214,110,.45);
+  box-shadow:0 0 18px rgba(255,214,110,.25);
+}
+.path span:first-child{background:linear-gradient(135deg,var(--gold),var(--caramel));border:none;animation:pathGlow 2.4s ease-in-out infinite}
+@keyframes pathGlow{0%,100%{box-shadow:0 0 14px rgba(255,214,110,.4)}50%{box-shadow:0 0 30px rgba(255,214,110,.8)}}
+.path i{width:26px;border-top:3px dashed rgba(255,214,110,.5)}
+
+/* --- табы --- */
+.tabs{
+  display:flex;gap:8px;overflow-x:auto;padding:16px 16px 6px;position:relative;z-index:2;
+  max-width:640px;margin:0 auto;scrollbar-width:none;
+}
+.tabs::-webkit-scrollbar{display:none}
+.tab{
+  flex:1 0 auto;border:2px solid rgba(255,214,110,.35);cursor:pointer;font-family:inherit;
+  background:rgba(255,248,234,.07);color:#ffe9c8;font-weight:800;font-size:14px;
+  padding:12px 16px;border-radius:999px;transition:.25s;white-space:nowrap;backdrop-filter:blur(8px);
+}
+.tab.active{
+  background:linear-gradient(135deg,var(--gold),var(--berry));color:#3b1428;border-color:transparent;
+  box-shadow:0 8px 26px rgba(255,92,138,.5);transform:translateY(-2px);
+}
+
+/* --- панели-подарки --- */
+.g-main{max-width:560px;margin:0 auto;padding:8px 18px;position:relative;z-index:2;text-align:center}
+.panel{display:none}
+.panel.active{display:block;animation:panelIn .45s ease}
+@keyframes panelIn{from{opacity:0;transform:translateY(16px) scale(.98)}to{opacity:1;transform:none}}
+.panel.active{
+  position:relative;border:3px solid var(--gold);border-radius:26px;
+  padding:34px 14px 22px;margin-top:26px;
+  background:linear-gradient(180deg,#fffdf4 0%,#fff3da 70%,#ffe3ba 100%);
+  box-shadow:0 0 0 3px rgba(125,31,61,.55),0 0 50px rgba(255,180,80,.3),0 26px 60px rgba(0,0,0,.5);
+}
+.panel.active::before{
+  content:"";position:absolute;inset:9px;border-radius:18px;pointer-events:none;
+  border:2px dashed rgba(179,84,30,.4);
+}
+.panel.active::after{
+  content:"🎀";position:absolute;top:-21px;right:14px;font-size:36px;transform:rotate(10deg);
+  filter:drop-shadow(0 5px 9px rgba(0,0,0,.4));animation:bowWiggle 3s ease-in-out infinite;
+}
+@keyframes bowWiggle{0%,100%{transform:rotate(10deg)}50%{transform:rotate(-6deg) scale(1.08)}}
+.game-badge{
+  position:absolute;top:-30px;left:50%;transform:translateX(-50%);
+  width:60px;height:60px;border-radius:50%;display:grid;place-items:center;font-size:30px;
+  background:linear-gradient(135deg,var(--gold),var(--caramel));
+  border:3px solid #fff3e0;box-shadow:0 10px 24px rgba(0,0,0,.4),0 0 26px rgba(255,180,80,.6);
+}
+.panel h2{font-family:'Unbounded',sans-serif;font-size:22px;color:var(--choc);margin-top:6px}
+.game-hint{font-family:'Caveat',cursive;font-size:24px;color:var(--choc-soft);margin:2px 0 4px}
+
+/* --- рулетка --- */
+.wheel-wrap{position:relative;width:min(80vw,320px);margin:12px auto 4px}
+.wheel-wrap::before{
+  content:"";position:absolute;inset:-14px;border-radius:50%;pointer-events:none;
+  background:conic-gradient(from 0deg,var(--gold),transparent 12%,var(--gold) 24%,transparent 36%,var(--gold) 48%,transparent 60%,var(--gold) 72%,transparent 84%,var(--gold));
+  -webkit-mask:radial-gradient(farthest-side,transparent calc(100% - 9px),#000 calc(100% - 8px));
+  mask:radial-gradient(farthest-side,transparent calc(100% - 9px),#000 calc(100% - 8px));
+  opacity:.9;animation:ringSpin 14s linear infinite;
+}
+@keyframes ringSpin{to{transform:rotate(360deg)}}
+.pointer{
+  position:absolute;top:-16px;left:50%;transform:translateX(-50%);z-index:2;
+  font-size:32px;color:#c2255c;
+  filter:drop-shadow(0 0 10px var(--gold));
+  animation:bob 1.2s ease-in-out infinite;
+}
+@keyframes bob{0%,100%{transform:translate(-50%,0)}50%{transform:translate(-50%,6px)}}
+#wheel{
+  width:100%;height:auto;display:block;border-radius:50%;
+  border:7px solid var(--gold);
+  box-shadow:0 0 0 4px #7d1f3d,0 0 60px rgba(255,180,80,.5),0 24px 60px rgba(0,0,0,.5);
+}
+#wheel.spinning{box-shadow:0 0 0 4px #7d1f3d,0 0 100px rgba(255,92,138,.65),0 24px 60px rgba(0,0,0,.5)}
+
+/* --- кнопки --- */
+.btn-gold{
+  border:0;cursor:pointer;font-family:inherit;position:relative;overflow:hidden;
+  font-size:18px;font-weight:800;color:#3b1428;
+  padding:16px 54px;border-radius:999px;margin-top:18px;
+  background:linear-gradient(135deg,#ffe9a8,#ffb3c9 40%,#ff8fb2 60%,#ffe9a8);
+  background-size:220% auto;
+  box-shadow:0 6px 0 #a33c5e,0 16px 34px rgba(255,143,178,.45);
+  transition:transform .15s,box-shadow .15s;
+  animation:btnSheen 5s linear infinite;
+  touch-action:manipulation;min-height:56px;
+}
+@keyframes btnSheen{to{background-position:220% center}}
+.btn-gold:hover{transform:translateY(-2px)}
+.btn-gold:active{transform:translateY(4px);box-shadow:0 2px 0 #a33c5e,0 8px 20px rgba(255,143,178,.4)}
+.btn-gold:disabled{cursor:wait}
+.btn-gold.small{padding:14px 28px;font-size:16px;margin-top:0;min-height:54px}
+.btn-gold.is-max{
+  opacity:.32;animation:none;box-shadow:none;cursor:not-allowed;filter:grayscale(.6);
+}
+.btn-gold.is-max:hover{transform:none}
+.ghost-btn{
+  margin-top:12px;background:transparent;color:#7d1f3d;
+  border:2.5px solid #b3541e;box-shadow:none;animation:none;
+  font-size:16px;padding:13px 34px;
+}
+.ghost-btn:hover{box-shadow:0 8px 24px rgba(179,84,30,.3)}
+.ghost-btn[hidden]{display:none}
+.result{
+  min-height:44px;margin-top:14px;
+  font-family:'Caveat',cursive;font-size:34px;line-height:1.2;color:#b3541e;
+  text-shadow:0 2px 0 rgba(255,255,255,.6);
+}
+.result.pop{animation:pop .5s ease}
+@keyframes pop{0%{transform:scale(.7);opacity:0}60%{transform:scale(1.12)}100%{transform:scale(1);opacity:1}}
+
+/* --- слот-машина --- */
+.slot-machine{
+  margin:12px auto 0;max-width:380px;padding:18px 14px 14px;border-radius:26px;
+  background:linear-gradient(180deg,#c22747 0%,#7d1f3d 60%,#4a0e28 100%);
+  border:3px solid var(--gold);
+  box-shadow:0 0 0 3px rgba(125,31,61,.4),0 0 50px rgba(255,92,138,.4),0 24px 60px rgba(0,0,0,.5);
+}
+.slot-lights{display:flex;justify-content:center;gap:9px;margin-bottom:14px}
+.slot-lights span{width:13px;height:13px;border-radius:50%;background:#3a2c12;border:1px solid rgba(255,214,110,.5)}
+.slot-lights span:nth-child(3n+1){animation:bulbP 1s infinite}
+.slot-lights span:nth-child(3n+2){animation:bulbG 1s .33s infinite}
+.slot-lights span:nth-child(3n){animation:bulbB 1s .66s infinite}
+@keyframes bulbP{0%,100%{background:#3a2c12;box-shadow:none}50%{background:#ff8fb2;box-shadow:0 0 14px #ff8fb2}}
+@keyframes bulbG{0%,100%{background:#3a2c12;box-shadow:none}50%{background:#7ef9c6;box-shadow:0 0 14px #7ef9c6}}
+@keyframes bulbB{0%,100%{background:#3a2c12;box-shadow:none}50%{background:#ffd66e;box-shadow:0 0 14px #ffd66e}}
+.slot-machine.jackpot{animation:jackpotGlow .7s ease-in-out 6}
+@keyframes jackpotGlow{
+  0%,100%{box-shadow:0 0 0 3px rgba(125,31,61,.4),0 0 50px rgba(255,92,138,.4),0 24px 60px rgba(0,0,0,.5)}
+  50%{box-shadow:0 0 0 3px rgba(255,214,110,.7),0 0 110px rgba(255,214,110,.8),0 24px 60px rgba(0,0,0,.5)}
+}
+.slot-machine.jackpot .slot-lights span{animation-duration:.28s}
+.reels{display:flex;gap:10px;justify-content:center}
+.reel{
+  flex:1;max-width:110px;background:linear-gradient(180deg,#fffdf4,#ffe9c8);
+  border-radius:18px;padding:14px 0;font-size:56px;line-height:1.2;text-align:center;
+  box-shadow:inset 0 6px 14px rgba(0,0,0,.25),inset 0 -6px 14px rgba(0,0,0,.18);
+  border:2px solid var(--gold);
+}
+.reel span{display:inline-block}
+.reel.spinning span{filter:blur(7px);animation:reelShake .12s linear infinite}
+@keyframes reelShake{0%{transform:translateY(-6px)}100%{transform:translateY(6px)}}
+.reel.landed span{animation:reelPop .35s cubic-bezier(.2,.8,.3,1.4)}
+@keyframes reelPop{0%{transform:scale(.6)}60%{transform:scale(1.2)}100%{transform:scale(1)}}
+.slot-label{
+  margin-top:12px;font-family:'Unbounded',sans-serif;font-size:12px;letter-spacing:.18em;
+  color:var(--gold);text-shadow:0 0 16px rgba(255,214,110,.6);
+}
+
+/* --- скретч-билеты --- */
+.ticket{
+  position:relative;margin:0 auto 14px;max-width:380px;border-radius:20px;overflow:hidden;
+  border:3px solid var(--gold);background:#fff;
+  box-shadow:0 0 30px rgba(255,180,80,.3),0 16px 40px rgba(0,0,0,.4);
+  touch-action:pan-y;transition:opacity .4s;
+}
+.prize{background:linear-gradient(180deg,#fffdf4,#ffe9c8);color:#3b1d2e;padding:20px 12px;text-align:center}
+.prize-emoji{font-size:62px;line-height:1;filter:drop-shadow(0 6px 12px rgba(0,0,0,.25))}
+.prize p{font-family:'Caveat',cursive;font-size:38px;line-height:1;margin-top:4px;color:#8f2145}
+.prize small{font-size:13px;font-weight:700;opacity:.6;color:var(--choc)}
+canvas.scratch{
+  position:absolute;inset:0;width:100%;height:100%;display:block;
+  cursor:pointer;touch-action:none;
+  transition:opacity .6s ease;
+}
+.ticket.done canvas.scratch{opacity:0;pointer-events:none}
+.ticket.done{animation:ticketGlow .8s ease}
+@keyframes ticketGlow{
+  0%{box-shadow:0 0 0 rgba(255,214,110,0)}
+  50%{box-shadow:0 0 70px rgba(255,214,110,.85)}
+  100%{box-shadow:0 0 30px rgba(255,180,80,.3)}
+}
+.ticket.locked{opacity:.45}
+.ticket.locked canvas.scratch{pointer-events:none}
+#scratchNext{margin-top:6px}
+
+/* --- монетка --- */
+.coin-stage{position:relative;height:250px;margin:8px auto 0;max-width:340px;perspective:900px}
+.coin-stage::before{
+  content:"";position:absolute;left:50%;top:8px;width:220px;height:220px;transform:translateX(-50%);
+  background:radial-gradient(circle,rgba(255,214,110,.35),transparent 65%);
+  animation:coinGlow 3s ease-in-out infinite;pointer-events:none;
+}
+@keyframes coinGlow{0%,100%{opacity:.7;transform:translateX(-50%) scale(1)}50%{opacity:1;transform:translateX(-50%) scale(1.1)}}
+.coin{
+  position:absolute;left:50%;top:26px;width:170px;height:170px;margin-left:-85px;
+  transform-style:preserve-3d;
+}
+.coin-stage.tossing .coin{animation:coinJump 2.3s cubic-bezier(.3,.7,.4,1)}
+@keyframes coinJump{
+  0%{top:150px}
+  42%{top:-6px}
+  72%{top:120px}
+  86%{top:132px}
+  100%{top:150px}
+}
+.face{
+  position:absolute;inset:0;border-radius:50%;
+  display:flex;flex-direction:column;align-items:center;justify-content:center;gap:2px;
+  background:radial-gradient(circle at 35% 30%,#ffe9a8 0%,var(--gold) 45%,#c98a2e 100%);
+  border:6px solid #fff3d0;
+  box-shadow:0 0 40px rgba(255,214,110,.55),inset 0 0 30px rgba(120,70,10,.45);
+  backface-visibility:hidden;-webkit-backface-visibility:hidden;
+}
+.face span{font-size:52px;line-height:1}
+.face p{font-family:'Unbounded',sans-serif;font-size:13px;font-weight:700;color:#5a3410;text-align:center;line-height:1.5}
+.face.back{transform:rotateX(180deg)}
+.coin-shadow{
+  position:absolute;left:50%;bottom:8px;width:130px;height:22px;margin-left:-65px;border-radius:50%;
+  background:radial-gradient(ellipse,rgba(0,0,0,.5),transparent 70%);
+}
+.coin-stage.tossing .coin-shadow{animation:shadowJump 2.3s cubic-bezier(.3,.7,.4,1)}
+@keyframes shadowJump{
+  0%{transform:scale(1);opacity:.9}
+  42%{transform:scale(.45);opacity:.35}
+  100%{transform:scale(1);opacity:.9}
+}
+.coin-choices{display:flex;gap:10px;justify-content:center;margin-top:16px;flex-wrap:wrap}
+
+/* --- финал --- */
+.final-line{
+  margin:26px auto 0;max-width:420px;font-size:15px;line-height:1.6;color:#ffe9c8;
+  background:rgba(255,248,234,.06);border:2px dashed rgba(255,214,110,.5);
+  border-radius:18px;padding:14px 18px;
+}
+.final-line b{color:var(--gold)}
+
+@media (max-width:380px){
+  .float-candy{display:none}
+  .reel{font-size:46px}
+}
+@media (prefers-reduced-motion:reduce){
+  *{animation:none!important;transition:none!important}
+}

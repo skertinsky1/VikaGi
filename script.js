@@ -284,13 +284,13 @@
     requestAnimationFrame(frame);
   }
 
-  /* ---------- 8. СЕКРЕТНАЯ КНОПКА (строго с 10 октября; ?party=1 — предпросмотр) ---------- */
+  /* ---------- 8. СЕКРЕТНАЯ КНОПКА (с 10 октября; ?party=1 — предпросмотр) ---------- */
   function checkUnlock(now) {
     now = now || new Date();
     var forced = /[?&]party=1/.test(location.search);
     var saved = getLS(LS.unlocked, "0") === "1";
     var bday = new Date(now.getFullYear(), BDAY_MONTH - 1, BDAY_DAY, 0, 0, 0);
-    var isOpen = forced || saved || now >= bday; // 10 октября 00:00 по местному времени
+    var isOpen = forced || saved || now >= bday; // только с 10 октября 00:00, без обходов
     if (isOpen && !saved) setLS(LS.unlocked, "1");
     var sec = $("congratsSection"), hint = $("congratsHint");
     if (!sec) return;

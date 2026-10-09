@@ -3,22 +3,42 @@
 <head>
 <meta charset="UTF-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-<title>С днём рождения, Вика! 🎉</title>
-<link rel="stylesheet" href="congrats.css?v=2" />
+<title>Тебе письмо 💌</title>
+<link rel="preconnect" href="https://fonts.googleapis.com" />
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+<link href="https://fonts.googleapis.com/css2?family=Caveat:wght@500;600;700&family=Manrope:wght@400;500;600;700;800&display=swap" rel="stylesheet" />
+<link rel="stylesheet" href="congrats.css?v=3" />
 </head>
 <body>
-<div class="intro" id="intro" aria-hidden="true">
-  <div class="intro-inner">
-    <p class="intro-line l1">С днём рождения,</p>
-    <p class="intro-line l2">Вика.</p>
-    <p class="intro-line l3">Сегодня твой день. Официально.</p>
+<div class="float-hearts" aria-hidden="true">
+  <span>♥</span><span>✦</span><span>♥</span><span>✦</span><span>♥</span><span>✦</span><span>♥</span><span>✦</span>
+</div>
+
+<div class="scene" id="scene">
+  <p class="open-hint" id="openHint">тебе письмо… нажми на печать 💌</p>
+  <div class="envelope" id="envelope" role="button" tabindex="0" aria-label="Открыть письмо">
+    <div class="env-back"></div>
+    <div class="letter-mini"><span>Вике ♡</span></div>
+    <div class="env-front"></div>
+    <div class="env-flap" id="envFlap"></div>
+    <div class="wax" id="wax"><span>В</span></div>
   </div>
 </div>
+
 <main class="wrap pre" id="mainWrap">
-  <h1 id="typed"></h1>
-  <a href="index.html" class="back">← вернуться на главную</a>
+  <div class="paper">
+    <div class="tape t1"></div>
+    <div class="tape t2"></div>
+    <p class="paper-head">Вике ♡</p>
+    <h1 id="typed"></h1>
+  </div>
+  <div class="after-links">
+    <a href="index.html" class="back">← вернуться на главную</a>
+    <a href="games.html" class="games-link" id="gamesLink">🎰 А теперь — мини-казино! Жми →</a>
+  </div>
 </main>
+
 <canvas id="fireworks"></canvas>
-<script src="congrats.js?v=2"></script>
+<script src="congrats.js?v=3"></script>
 </body>
 </html>
